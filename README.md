@@ -1,4 +1,4 @@
-# Parallel Computing Final Assignment - Brute Force PIN Cracker
+# Parallel Computing Assignment 03 - Brute Force PIN Cracker
 
 ## Project Overview
 
