@@ -80,7 +80,6 @@ int main(int argc, char *argv[]) {
     char hashhex[65];
 
     int stop_flag = 0;    // Received STOP from another rank?
-    int found = 0;        // Did THIS rank find the PIN?
 
     // Asynchronous receive for stop signal
     MPI_Request stop_request;
@@ -106,8 +105,6 @@ int main(int argc, char *argv[]) {
 
         // Compare hashes
         if (strcmp(hashhex, target_hash) == 0) {
-            found = 1;
-
             double t1 = MPI_Wtime();
             
             printf("FOUND! Candidate: %s (Rank %d)\n", candidate, rank);
