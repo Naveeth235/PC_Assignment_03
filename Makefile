@@ -3,8 +3,8 @@
 
 .PHONY: all serial openmp mpi cuda clean test help
 
-# Default: build all
-all: serial openmp mpi cuda
+# Default: build all (excluding CUDA - run on Google Colab)
+all: serial openmp mpi
 
 # Build individual implementations
 serial:
@@ -24,11 +24,12 @@ mpi:
 
 cuda:
 	@echo "=== Building CUDA Implementation ==="
-	$(MAKE) -C "CUDA Code"
+	@echo "⚠️  CUDA implementation should be run on Google Colab"
+	@echo "⚠️  Open CUDA Code/brute_CUDA.ipynb in Google Colab"
 	@echo ""
 
-# Run all tests
-test: all
+# Run all tests (excluding CUDA)
+test: serial openmp mpi
 	@echo "========================================="
 	@echo "Testing Serial Implementation"
 	@echo "========================================="
@@ -45,22 +46,23 @@ test: all
 	$(MAKE) -C "MPI Code" test
 	@echo ""
 	@echo "========================================="
-	@echo "Testing CUDA Implementation"
+	@echo "CUDA Implementation"
 	@echo "========================================="
-	$(MAKE) -C "CUDA Code" test
+	@echo "⚠️  CUDA should be tested on Google Colab"
+	@echo "⚠️  Open CUDA Code/brute_CUDA.ipynb in Google Colab"
 	@echo ""
 	@echo "========================================="
-	@echo "All tests completed!"
+	@echo "Local tests completed!"
 	@echo "========================================="
 
 # Clean all build artifacts
 clean:
-	@echo "Cleaning all implementations..."
+	@echo "Cleaning local implementations..."
 	$(MAKE) -C "Serial Code" clean
 	$(MAKE) -C "OpenMP Code" clean
 	$(MAKE) -C "MPI Code" clean
-	$(MAKE) -C "CUDA Code" clean
-	@echo "Clean complete!"
+	@echo "Local clean complete!"
+	@echo "⚠️  CUDA artifacts (if any) should be cleaned in Google Colab"
 
 # Check all environments
 check:
@@ -73,8 +75,7 @@ check:
 	@echo "=== Checking MPI ==="
 	$(MAKE) -C "MPI Code" check
 	@echo ""
-	@echo "=== Checking CUDA ==="
-	$(MAKE) -C "CUDA Code" check
+	@echo "⚠️  CUDA should be checked in Google Colab environment"
 
 # Help message
 help:
@@ -82,15 +83,18 @@ help:
 	@echo "=================================================="
 	@echo ""
 	@echo "Available targets:"
-	@echo "  make              - Build all implementations (serial, openmp, mpi, cuda)"
+	@echo "  make              - Build local implementations (serial, openmp, mpi)"
 	@echo "  make serial       - Build only serial implementation"
 	@echo "  make openmp       - Build only OpenMP implementation"
 	@echo "  make mpi          - Build only MPI implementation"
-	@echo "  make cuda         - Build only CUDA implementation"
-	@echo "  make test         - Build and run all tests"
+	@echo "  make cuda         - Show CUDA instructions (run on Google Colab)"
+	@echo "  make test         - Build and run all local tests"
 	@echo "  make clean        - Remove all compiled binaries"
-	@echo "  make check        - Verify all compiler installations"
+	@echo "  make check        - Verify local compiler installations"
 	@echo "  make help         - Show this help message"
+	@echo ""
+	@echo "CUDA Implementation:"
+	@echo "  ⚠️  Run CUDA Code/brute_CUDA.ipynb on Google Colab"
 	@echo ""
 	@echo "Individual implementation commands:"
 	@echo "  cd 'Serial Code' && make help"

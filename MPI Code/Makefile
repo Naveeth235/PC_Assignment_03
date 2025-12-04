@@ -19,20 +19,23 @@ $(TARGET): $(SOURCE)
 # Run with different process counts
 test: $(TARGET)
 	@echo "=== Running with 1 process ==="
-	mpirun -np 1 ./$(TARGET) 7 9876438
+	mpirun --allow-run-as-root -np 1 ./$(TARGET) 7 9876543
 	@echo ""
 	@echo "=== Running with 2 processes ==="
-	mpirun -np 2 ./$(TARGET) 7 9876438
+	mpirun --allow-run-as-root -np 2 ./$(TARGET) 7 9876543
 	@echo ""
 	@echo "=== Running with 4 processes ==="
-	mpirun -np 4 ./$(TARGET) 7 9876438
+	mpirun --allow-run-as-root -np 4 ./$(TARGET) 7 9876543
 	@echo ""
 	@echo "=== Running with 8 processes ==="
-	mpirun -np 8 ./$(TARGET) 7 9876438
+	mpirun --allow-run-as-root --oversubscribe -np 8 ./$(TARGET) 7 9876543
+	@echo ""
+	@echo "=== Running with 16 processes ==="
+	mpirun --allow-run-as-root --oversubscribe -np 16 ./$(TARGET) 7 9876543
 
 # Run single test
 run: $(TARGET)
-	mpirun -np 4 ./$(TARGET) 7 9876438
+	mpirun --allow-run-as-root -np 2 ./$(TARGET) 7 9876543
 
 # Clean build artifacts
 clean:

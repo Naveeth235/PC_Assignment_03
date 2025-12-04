@@ -19,23 +19,23 @@ $(TARGET): $(SOURCE)
 # Run with different thread counts
 test: $(TARGET)
 	@echo "=== Running with 1 thread ==="
-	OMP_NUM_THREADS=1 ./$(TARGET) 7 7654322
+	OMP_NUM_THREADS=1 ./$(TARGET) 7 9876543
 	@echo ""
 	@echo "=== Running with 2 threads ==="
-	OMP_NUM_THREADS=2 ./$(TARGET) 7 7654322
+	OMP_NUM_THREADS=2 ./$(TARGET) 7 9876543
 	@echo ""
 	@echo "=== Running with 4 threads ==="
-	OMP_NUM_THREADS=4 ./$(TARGET) 7 7654322
+	OMP_NUM_THREADS=4 ./$(TARGET) 7 9876543
 	@echo ""
 	@echo "=== Running with 8 threads ==="
-	OMP_NUM_THREADS=8 ./$(TARGET) 7 7654322
+	OMP_NUM_THREADS=8 ./$(TARGET) 7 9876543
 	@echo ""
 	@echo "=== Running with 16 threads ==="
-	OMP_NUM_THREADS=16 ./$(TARGET) 7 7654322
+	OMP_NUM_THREADS=16 ./$(TARGET) 7 9876543
 
 # Run single test
 run: $(TARGET)
-	OMP_NUM_THREADS=4 ./$(TARGET) 7 7654322
+	OMP_NUM_THREADS=4 ./$(TARGET) 7 9876543
 
 # Clean build artifacts
 clean:

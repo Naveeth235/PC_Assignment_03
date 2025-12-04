@@ -19,11 +19,11 @@ $(TARGET): $(SOURCE)
 # Run test
 test: $(TARGET)
 	@echo "=== Running serial brute force ==="
-	./$(TARGET) 7 7654322
+	./$(TARGET) 7 9876543
 
 # Run with custom parameters
 run: $(TARGET)
-	./$(TARGET) 7 7654322
+	./$(TARGET) 7 9876543
 
 # Clean build artifacts
 clean:
